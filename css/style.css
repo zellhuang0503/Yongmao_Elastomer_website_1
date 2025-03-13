@@ -129,6 +129,20 @@ img {
     background-color: var(--color-gray);
 }
 
+/* 產業應用領域背景 */
+.industries.bg-light {
+    background-image: url('../images/industries-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* 固定背景，產生視差效果 */
+}
+
+/* 產業應用領域文字顏色 */
+.industries.bg-light .section-header h2,
+.industries.bg-light .section-header p {
+    color: white; /* 將標題和副標題文字改為白色 */
+}
+
 .center-button {
     text-align: center;
     margin-top: var(--spacing-lg);
@@ -399,7 +413,7 @@ img {
 
 /* 主橫幅區域 */
 .hero {
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('../images/hero-bg.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('../images/hero-bg-new.png');
     background-size: cover;
     background-position: center;
     color: white;
