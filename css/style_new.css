@@ -224,21 +224,14 @@ img {
 
 .header .container {
     display: flex;
-    align-items: center; /* 確保子元素垂直居中 */
+    align-items: center;
     justify-content: space-between;
-    padding-top: var(--spacing-md); /* 增加上下內邊距，從spacing-sm改為spacing-md */
-    padding-bottom: var(--spacing-md);
-}
-
-.logo {
-    display: flex;
-    align-items: center; /* 確保LOGO垂直居中 */
+    padding-top: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
 }
 
 .logo img {
-    height: 35px !important; /* 增加LOGO高度 */
-    width: auto; /* 保持圖片比例 */
-    max-height: 35px !important; /* 確保最大高度也受限制 */
+    height: 60px;
 }
 
 .main-nav .nav-list {
