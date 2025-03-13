@@ -443,6 +443,27 @@ img {
     gap: var(--spacing-md);
 }
 
+/* Hero 按鈕尺寸調整 */
+.hero-buttons .btn {
+    /* 縮小按鈕的文字大小和內邊距 */
+    padding: 0.6rem 1.2rem; /* 原先是 0.75rem 1.5rem，縮小 20% */
+    font-size: 0.9rem; /* 縮小 10% 的文字大小，確保可讀性 */
+    /* 不使用 transform: scale() 以避免影響按鈕之間的間距 */
+    display: inline-flex; /* 使用 flex 布局以便垂直居中 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    min-height: 2.5rem; /* 確保按鈕高度一致 */
+}
+
+/* 加深按鈕懸停時的顏色 */
+.hero-buttons .btn-primary:hover {
+    background-color: #c02500; /* 比原來的 #e02e03 更深的紅色 */
+}
+
+.hero-buttons .btn-secondary:hover {
+    background-color: #c07800; /* 比原來的 #e0900a 更深的橙色 */
+}
+
 /* 關於我們摘要 */
 .about-content {
     display: flex;
