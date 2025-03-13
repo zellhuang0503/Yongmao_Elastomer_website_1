@@ -434,6 +434,7 @@ img {
     display: flex;
     align-items: center;
     gap: var(--spacing-xl);
+    flex-direction: row-reverse; /* 將圖片放在右側，文字放在左側 */
 }
 
 .about-text,
@@ -441,9 +442,15 @@ img {
     flex: 1;
 }
 
+.about-text {
+    padding-right: var(--spacing-lg); /* 為文字區塊添加右側間距 */
+}
+
 .about-image img {
     border-radius: var(--border-radius-md);
     box-shadow: var(--shadow-md);
+    width: 100%; /* 確保圖片填滿容器 */
+    height: auto; /* 保持圖片比例 */
 }
 
 /* 產業應用網格 */
