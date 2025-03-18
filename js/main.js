@@ -85,7 +85,19 @@ function initSolutionSlider() {
     let currentIndex = 0;
     
     // 設置輪播間隔時間（毫秒）
-    const interval = 8000; // 從5000毫秒增加到8000毫秒，讓訪客有更多時間閱讀擴充後的內容
+    const interval = 8000; // 8秒
+    
+    // 初始化：隱藏所有輪播項目
+    slides.forEach(slide => {
+        slide.classList.remove('active');
+        // 添加錯誤處理：當圖片載入失敗時顯示備用圖片
+        const img = slide.querySelector('img');
+        if (img) {
+            img.onerror = function() {
+                this.src = './images/default-solution.jpg';
+            };
+        }
+    });
     
     // 創建輪播指示器容器
     const indicators = document.createElement('div');
@@ -95,7 +107,7 @@ function initSolutionSlider() {
     // 為每個輪播項目創建一個指示器
     slides.forEach((_, index) => {
         const indicator = document.createElement('span');
-        indicator.className = index === 0 ? 'indicator active' : 'indicator';
+        indicator.className = 'indicator';
         
         // 點擊指示器切換到對應的輪播項目
         indicator.addEventListener('click', () => {
@@ -129,8 +141,8 @@ function initSolutionSlider() {
         goToSlide(nextIndex);
     }
     
-    // 初始化輪播：為第一個輪播項目添加active類別
-    slides[0].classList.add('active');
+    // 初始化：顯示第一個輪播項目
+    goToSlide(0);
     
     // 設置自動輪播定時器
     let slideInterval = setInterval(nextSlide, interval);

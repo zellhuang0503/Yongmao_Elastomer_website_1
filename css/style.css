@@ -675,6 +675,7 @@ img {
     overflow: hidden;
     box-shadow: var(--shadow-md);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: var(--color-dark); /* 確保卡片內文字為深色 */
 }
 
 .news-card:hover {
@@ -685,6 +686,7 @@ img {
 .news-image {
     height: 200px;
     overflow: hidden;
+    position: relative; /* 為日期定位提供參考 */
 }
 
 .news-image img {
@@ -698,19 +700,60 @@ img {
     transform: scale(1.05);
 }
 
+.news-date {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-primary);
+    color: white;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top-right-radius: var(--border-radius-sm);
+}
+
+.news-date .day {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.news-date .month {
+    font-size: 0.875rem;
+}
+
 .news-content {
     padding: var(--spacing-md);
 }
 
-.news-date {
-    font-size: 0.875rem;
-    color: var(--color-dark-gray);
-    margin-bottom: var(--spacing-xs);
-}
-
-.news-title {
+.news-content h3 {
+    color: var(--color-dark);
+    margin-top: var(--spacing-sm);
     font-size: 1.25rem;
     margin-bottom: var(--spacing-sm);
+}
+
+.news-content p {
+    color: var(--color-dark-gray);
+    margin-bottom: var(--spacing-md);
+}
+
+.news-content .card-link {
+    color: var(--color-primary);
+    font-weight: 500;
+    position: relative;
+    display: inline-block;
+}
+
+.news-content .card-link::after {
+    content: "→";
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+.news-content .card-link:hover::after {
+    transform: translateX(3px);
 }
 
 /* 聯絡我們區塊 */
