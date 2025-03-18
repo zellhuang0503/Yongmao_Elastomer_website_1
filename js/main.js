@@ -85,7 +85,7 @@ function initSolutionSlider() {
     let currentIndex = 0;
     
     // 設置輪播間隔時間（毫秒）
-    const interval = 5000;
+    const interval = 8000; // 從5000毫秒增加到8000毫秒，讓訪客有更多時間閱讀擴充後的內容
     
     // 創建輪播指示器容器
     const indicators = document.createElement('div');
