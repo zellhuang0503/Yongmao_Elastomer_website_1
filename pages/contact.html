@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聯絡我們 - 詠楙企業有限公司</title>
+    <meta name="description" content="詠楙企業有限公司是專業的彈性體加工公司，歡迎聯絡我們了解更多關於彈性體客製化解決方案的資訊，或提出您的特殊需求。">
+    <link rel="icon" href="../images/YM-logo-sss.png" type="image/png">
+    <link rel="stylesheet" href="../css/normalize.css?v=1.0.1">
+    <link rel="stylesheet" href="../css/style_new.css?v=1.0.1">
+    <!-- 思源黑體 Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 圖標 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 頂部導航 -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/LOGO-white-slogen.png" alt="詠楙企業有限公司標誌">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <button class="mobile-menu-toggle" aria-label="開啟選單">
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="../index.html">首頁</a></li>
+                    <li><a href="./about.html">關於詠楙</a></li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle">產業應用 <img src="../images/arrow-icon-menu.png" alt="下拉選單" class="dropdown-arrow"></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="./industries/mechanical.html">機械製造業</a></li>
+                            <li><a href="./industries/sports.html">運動器材業</a></li>
+                            <li><a href="./industries/food.html">食品製造業</a></li>
+                            <li><a href="./industries/semiconductor.html">半導體製造業</a></li>
+                            <li><a href="./industries/aerospace.html">航太配件</a></li>
+                            <li><a href="./industries/musical.html">樂器配件</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle">客製化解決方案 <img src="../images/arrow-icon-menu.png" alt="下拉選單" class="dropdown-arrow"></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="./solutions/surface-precision.html">表面精度優化</a></li>
+                            <li><a href="./solutions/heat-resistant.html">耐高溫彈性體開發</a></li>
+                            <li><a href="./solutions/oil-improvement.html">出油問題改善</a></li>
+                            <li><a href="./solutions/material-bonding.html">異材質結合技術</a></li>
+                            <li><a href="./solutions/surface-treatment.html">表面處理/抗沾黏</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="./news.html">最新消息</a></li>
+                    <li><a href="./contact.html" class="active">聯絡我們</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主橫幅 -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>聯絡詠楙企業</h1>
+                <p>我們期待與您交流，了解您的需求並提供專業的彈性體解決方案</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Netlify 聯絡表單 -->
+    <section id="contact-form" class="contact-form-section section" style="background-color: #FBFEF9;">
+        <div class="container">
+            <div class="section-header">
+                <h2>發送訊息</h2>
+                <p>有任何問題或需求，請填寫以下表單與我們聯繫</p>
+            </div>
+            <div class="form-container">
+                <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                    <p class="hidden">
+                        <label>不要填寫這個欄位如果你是人類: <input name="bot-field" /></label>
+                    </p>
+                    <div class="form-group">
+                        <label for="name">您的姓名</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">您的電子郵件</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">公司名稱</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">聯絡電話</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">主旨</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">訊息內容</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">送出訊息</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 地圖區域 -->
+    <section class="map-section">
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3640.6277085565366!2d120.60679661536995!3d24.15323498439309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693d9650422ae1%3A0x1b9d6f485106f390!2zNDA45Y-w5Lit5biC5Y2X5bGv5Y2A57K-56eR6LevNDLomZ8!5e0!3m2!1szh-TW!2stw!4v1616567868345!5m2!1szh-TW!2stw" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- 頁腳 -->
+    <footer class="footer"></footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/footer-template.js"></script>
+</body>
+</html>
