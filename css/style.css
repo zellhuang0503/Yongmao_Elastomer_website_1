@@ -647,6 +647,8 @@ img {
     justify-content: center;
     gap: var(--spacing-xs);
     margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-md); /* 添加底部間距 */
+    padding-bottom: var(--spacing-sm); /* 添加內部底部間距 */
 }
 
 .indicator {
