@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function initMobileMenu() {
     const mobileToggle = document.querySelector('.mobile-menu-toggle');
     const mainNav = document.querySelector('.main-nav');
+    const navList = document.querySelector('.nav-list');
     const dropdowns = document.querySelectorAll('.dropdown');
     
     // 如果找到行動裝置選單按鈕
@@ -27,6 +28,7 @@ function initMobileMenu() {
             e.stopPropagation();
             // 切換主導航的active類別來顯示/隱藏選單
             mainNav.classList.toggle('active');
+            console.log('漢堡選單被點擊，目前狀態：', mainNav.classList.contains('active') ? '開啟' : '關閉');
         });
     }
     
@@ -51,6 +53,7 @@ function initMobileMenu() {
                     
                     // 切換當前下拉選單的顯示狀態
                     dropdown.classList.toggle('active');
+                    console.log('下拉選單被點擊，目前狀態：', dropdown.classList.contains('active') ? '開啟' : '關閉');
                 }
             });
         }
