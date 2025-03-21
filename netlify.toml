@@ -5,8 +5,8 @@
 [dev]
   framework = "# static"
   publish = "."
-  port = 3000
-  targetPort = 3000
+  port = 8888
+  targetPort = 8888
   autoLaunch = true
   
 # 啟用表單處理功能
