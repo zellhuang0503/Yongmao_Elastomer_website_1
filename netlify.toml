@@ -3,10 +3,11 @@
   command = "# 如需構建命令請取消註釋並填寫"
 
 [dev]
-  framework = "#static"
+  framework = "# static"
   publish = "."
   port = 3000
   targetPort = 3000
+  autoLaunch = true
   
 # 啟用表單處理功能
 [build.processing.html]
