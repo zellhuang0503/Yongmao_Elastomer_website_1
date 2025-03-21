@@ -1,10 +1,10 @@
 [build]
-  publish = "/"
+  publish = "."
   command = "# 如需構建命令請取消註釋並填寫"
 
 [dev]
   framework = "#static"
-  publish = "/"
+  publish = "."
   port = 8888
   targetPort = 8888
   
