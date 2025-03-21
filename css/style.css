@@ -1077,7 +1077,7 @@ img {
         position: relative;
     }
     
-    .main-nav {
+    .nav-list {
         position: absolute;
         top: 100%;
         left: 0;
@@ -1089,9 +1089,10 @@ img {
         visibility: hidden;
         transform: translateY(-10px);
         transition: all 0.3s ease;
+        z-index: 999;
     }
     
-    .main-nav.active {
+    .main-nav.active .nav-list {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
