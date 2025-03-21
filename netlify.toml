@@ -29,7 +29,7 @@
   to = "/index.html"
   status = 200
   force = false
-  conditions = {Role = ["admin"]}
+  # 移除了 admin 角色限制條件
 
 # 環境變量設置
 [context.production.environment]
