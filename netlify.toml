@@ -4,6 +4,9 @@
 
 [dev]
   framework = "#static"
+  publish = "/"
+  port = 8888
+  targetPort = 8888
   
 # 啟用表單處理功能
 [build.processing.html]
