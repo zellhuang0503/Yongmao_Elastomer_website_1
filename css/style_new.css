@@ -312,6 +312,12 @@ img {
     border: none;
     cursor: pointer;
     padding: var(--spacing-sm);
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    outline: none;
 }
 
 .hamburger {
@@ -320,6 +326,7 @@ img {
     height: 2px;
     background-color: var(--color-light);
     position: relative;
+    transition: background-color 0.3s ease;
 }
 
 .hamburger:before,
@@ -330,6 +337,7 @@ img {
     background-color: var(--color-light);
     position: absolute;
     left: 0;
+    transition: transform 0.3s ease;
 }
 
 .hamburger:before {
@@ -338,6 +346,20 @@ img {
 
 .hamburger:after {
     bottom: -8px;
+}
+
+.main-nav.active .hamburger {
+    background-color: transparent;
+}
+
+.main-nav.active .hamburger:before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.main-nav.active .hamburger:after {
+    transform: rotate(-45deg);
+    bottom: 0;
 }
 
 /* 主橫幅區域 */
@@ -633,13 +655,91 @@ textarea.form-control {
 
 /* 響應式設計 */
 @media (max-width: 768px) {
-    .form-container form {
-        grid-template-columns: 1fr;
+    html {
+        font-size: 14px;
     }
     
-    .form-group:nth-last-child(1),
-    .form-group:nth-last-child(2) {
-        grid-column: span 1;
+    .header-container {
+        position: relative;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .main-nav {
+        position: relative;
+    }
+    
+    .main-nav .nav-list {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--color-dark);
+        box-shadow: var(--shadow-md);
+        padding: var(--spacing-md) 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        flex-direction: column;
+        z-index: 99;
+    }
+    
+    .main-nav.active .nav-list {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+    .main-nav .nav-list li {
+        margin: 0;
+        width: 100%;
+        text-align: left;
+    }
+    
+    .main-nav .nav-list li a {
+        padding: 12px 20px;
+        display: block;
+    }
+    
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.05);
+        box-shadow: none;
+        padding-left: var(--spacing-md);
+        display: none;
+    }
+    
+    .dropdown.active .dropdown-menu {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.25rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .industries-grid,
+    .news-grid {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -717,78 +817,6 @@ textarea.form-control {
     .about-image,
     .solution-image {
         order: -1;
-    }
-}
-
-@media (max-width: 768px) {
-    html {
-        font-size: 14px;
-    }
-    
-    .mobile-menu-toggle {
-        display: block;
-    }
-    
-    .main-nav {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background-color: var(--color-dark);
-        box-shadow: var(--shadow-md);
-        padding: var(--spacing-md) 0;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-10px);
-        transition: all 0.3s ease;
-    }
-    
-    .main-nav.active {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-    }
-    
-    .main-nav .nav-list {
-        flex-direction: column;
-    }
-    
-    .main-nav .nav-list li {
-        margin: 0;
-    }
-    
-    .dropdown-menu {
-        position: static;
-        width: 100%;
-        background-color: rgba(255, 255, 255, 0.05);
-        box-shadow: none;
-        padding-left: var(--spacing-md);
-        display: none;
-    }
-    
-    .dropdown.active .dropdown-menu {
-        display: block;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-    }
-    
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    
-    .hero p {
-        font-size: 1.25rem;
-    }
-    
-    .hero-buttons {
-        flex-direction: column;
-        gap: var(--spacing-sm);
-    }
-    
-    .industries-grid,
-    .news-grid {
-        grid-template-columns: 1fr;
     }
 }
 

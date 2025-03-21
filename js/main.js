@@ -22,22 +22,25 @@ function initMobileMenu() {
     // 如果找到行動裝置選單按鈕
     if (mobileToggle) {
         // 為選單按鈕添加點擊事件
-        mobileToggle.addEventListener('click', function() {
+        mobileToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             // 切換主導航的active類別來顯示/隱藏選單
             mainNav.classList.toggle('active');
         });
     }
     
-    // 處理下拉選單在行動裝置上的點擊事件
-    if (window.innerWidth <= 768) {
-        dropdowns.forEach(dropdown => {
-            const link = dropdown.querySelector('a');
-            
+    // 處理下拉選單的點擊事件
+    dropdowns.forEach(dropdown => {
+        const link = dropdown.querySelector('.dropdown-toggle');
+        
+        if (link) {
             // 下拉選單連結被點擊時
             link.addEventListener('click', function(e) {
-                // 如果是行動裝置模式，阻止連結的默認行為（不跳轉）
+                e.preventDefault();
+                
+                // 如果是行動裝置模式
                 if (window.innerWidth <= 768) {
-                    e.preventDefault();
                     // 找到該下拉選單的所有兄弟下拉選單
                     const siblings = Array.from(dropdowns).filter(item => item !== dropdown);
                     
@@ -50,8 +53,22 @@ function initMobileMenu() {
                     dropdown.classList.toggle('active');
                 }
             });
-        });
-    }
+        }
+    });
+    
+    // 點擊頁面其他地方關閉選單
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+            // 如果點擊的不是選單內的元素，且選單是開啟狀態
+            if (!e.target.closest('.nav-list') && !e.target.closest('.mobile-menu-toggle') && mainNav.classList.contains('active')) {
+                mainNav.classList.remove('active');
+                // 關閉所有下拉選單
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        }
+    });
     
     // 當視窗大小改變時，重置選單狀態
     window.addEventListener('resize', function() {

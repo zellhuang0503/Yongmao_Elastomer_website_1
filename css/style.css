@@ -382,33 +382,66 @@ img {
     background: none;
     border: none;
     cursor: pointer;
-    padding: var(--spacing-sm);
+    padding: 10px;
+    position: relative;
+    z-index: 100;
+    outline: none;
+    width: 40px;
+    height: 40px;
+}
+
+.mobile-menu-toggle:focus {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+.mobile-menu-toggle:active {
+    outline: none;
+    box-shadow: none;
+    border: none;
 }
 
 .hamburger {
     display: block;
-    width: 24px;
-    height: 2px;
-    background-color: var(--color-light);
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
     position: relative;
+    transition: background-color 0.3s ease;
 }
 
 .hamburger:before,
 .hamburger:after {
     content: '';
-    width: 24px;
-    height: 2px;
-    background-color: var(--color-light);
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
     position: absolute;
     left: 0;
+    transition: transform 0.3s ease;
 }
 
 .hamburger:before {
-    top: -8px;
+    top: -10px;
 }
 
 .hamburger:after {
-    bottom: -8px;
+    bottom: -10px;
+}
+
+.main-nav.active .hamburger {
+    background-color: transparent;
+}
+
+.main-nav.active .hamburger:before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.main-nav.active .hamburger:after {
+    transform: rotate(-45deg);
+    bottom: 0;
 }
 
 /* 主橫幅區域 */
@@ -955,8 +988,23 @@ textarea.form-control {
         font-size: 14px;
     }
     
+    .header .container {
+        position: relative;
+    }
+    
     .mobile-menu-toggle {
         display: block;
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1000;
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+    }
+    
+    .main-nav {
+        position: relative;
     }
     
     .main-nav {

@@ -34,3 +34,6 @@ logs/
 # 忽略暫存檔案
 *.tmp
 *.temp
+
+# Local Netlify folder
+.netlify
