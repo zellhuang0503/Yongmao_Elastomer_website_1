@@ -814,27 +814,95 @@ img {
     margin-right: var(--spacing-md);
 }
 
+/* 聯絡表單卡片樣式 - 全新版本 v2 */
+.contact-card-v2 {
+    background-color: white;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+}
+
+/* 修正 CSS lint 錯誤：移除空規則集 */
+.contact-card {
+    /* 已不再使用 */
+    display: none;
+}
+
+.form-row {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* 表單元素樣式改進 */
 .form-group {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
 }
 
-.form-label {
+.form-group label {
     display: block;
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
     font-weight: 500;
+    color: var(--color-dark);
 }
 
-.form-control {
+.form-group input,
+.form-group textarea {
     width: 100%;
-    padding: 0.75rem;
+    padding: 1rem;
     border: 1px solid #ddd;
     border-radius: var(--border-radius-sm);
     font-family: var(--font-primary);
 }
 
-textarea.form-control {
+.form-group textarea {
     min-height: 150px;
     resize: vertical;
+}
+
+.form-group button {
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 2.5rem;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.form-group button:hover {
+    background-color: #e62e04;
+}
+
+/* 響應式表單 */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .contact-card-v2 {
+        padding: var(--spacing-lg);
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+/* 刪除所有可能與卡片頭部相關的樣式 */
+.card-header, 
+.card-body {
+    display: none !important;
 }
 
 /* 頁腳區域 */

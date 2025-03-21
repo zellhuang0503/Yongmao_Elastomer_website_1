@@ -6,8 +6,8 @@
     <title>聯絡我們 - 詠楙企業有限公司</title>
     <meta name="description" content="詠楙企業有限公司是專業的彈性體加工公司，歡迎聯絡我們了解更多關於彈性體客製化解決方案的資訊，或提出您的特殊需求。">
     <link rel="icon" href="../images/YM-logo-sss.png" type="image/png">
-    <link rel="stylesheet" href="../css/normalize.css?v=1.0.1">
-    <link rel="stylesheet" href="../css/style_new.css?v=1.0.1">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/style.css">
     <!-- 思源黑體 Noto Sans TC -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Font Awesome 圖標 -->
@@ -67,33 +67,88 @@
         </div>
     </section>
 
-    <!-- Netlify 聯絡表單 -->
-    <section id="contact-form" class="contact-form-section section" style="background-color: #FBFEF9;">
+    <!-- Netlify 聯絡表單 - 全新結構 -->
+    <section id="contact-form-new" class="contact-form-section section" style="background-color: #f5f5f5;">
         <div class="container">
             <div class="section-header">
                 <h2>發送訊息</h2>
                 <p>有任何問題或需求，請填寫以下表單與我們聯繫</p>
             </div>
-            <div class="form-container">
+            <div class="contact-card-v2">
                 <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
                     <p class="hidden">
                         <label>不要填寫這個欄位如果你是人類: <input name="bot-field" /></label>
                     </p>
-                    <div class="form-group">
-                        <label for="name">您的姓名</label>
-                        <input type="text" id="name" name="name" required>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">您的姓名</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">您的電子郵件</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="company">公司名稱</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">聯絡電話</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="email">您的電子郵件</label>
-                        <input type="email" id="email" name="email" required>
+                        <label for="subject">主旨</label>
+                        <input type="text" id="subject" name="subject" required>
                     </div>
                     <div class="form-group">
-                        <label for="company">公司名稱</label>
-                        <input type="text" id="company" name="company">
+                        <label for="message">訊息內容</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="phone">聯絡電話</label>
-                        <input type="tel" id="phone" name="phone">
+                        <button type="submit" class="btn btn-primary">送出訊息</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 原始聯絡表單隱藏不使用 -->
+    <section id="contact-form" class="contact-form-section section hidden" style="display: none;">
+        <!-- 這裡是舊的聯絡表單結構，已被隱藏 -->
+        <div class="container">
+            <div class="section-header">
+                <h2>發送訊息</h2>
+                <p>有任何問題或需求，請填寫以下表單與我們聯繫</p>
+            </div>
+            <!-- IMPORTANT: 這是新版表單，不使用卡片頭部和卡片內容容器 -->
+            <!-- VERSION: 2025-03-21-01 -->
+            <div class="contact-card contact-card-new">
+                <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                    <p class="hidden">
+                        <label>不要填寫這個欄位如果你是人類: <input name="bot-field" /></label>
+                    </p>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">您的姓名</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">您的電子郵件</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="company">公司名稱</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">聯絡電話</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="subject">主旨</label>
