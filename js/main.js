@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 初始化輪播功能（如果有需要）
     initSolutionSlider();
+    
+    // 初始化平滑捲動
+    initSmoothScroll();
 });
 
 /**
@@ -40,8 +43,9 @@ function initMobileMenu() {
             // 下拉選單連結被點擊時
             link.addEventListener('click', function(e) {
                 e.preventDefault();
+                e.stopPropagation();
                 
-                // 如果是行動裝置模式
+                // 在行動裝置模式下
                 if (window.innerWidth <= 768) {
                     // 找到該下拉選單的所有兄弟下拉選單
                     const siblings = Array.from(dropdowns).filter(item => item !== dropdown);
@@ -182,26 +186,28 @@ function initSolutionSlider() {
  * 平滑捲動功能
  * 點擊導航連結時平滑捲動到對應區塊
  */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        // 獲取目標元素的id（去掉#符號）
-        const targetId = this.getAttribute('href').substring(1);
-        
-        // 如果id不為空，找到對應元素並平滑捲動
-        if (targetId) {
-            const targetElement = document.getElementById(targetId);
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            // 獲取目標元素的id（去掉#符號）
+            const targetId = this.getAttribute('href').substring(1);
             
-            if (targetElement) {
-                e.preventDefault();
+            // 如果id不為空，找到對應元素並平滑捲動
+            if (targetId) {
+                const targetElement = document.getElementById(targetId);
                 
-                window.scrollTo({
-                    top: targetElement.offsetTop - 100, // 減去頭部導航的高度
-                    behavior: 'smooth'
-                });
+                if (targetElement) {
+                    e.preventDefault();
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100, // 減去頭部導航的高度
+                        behavior: 'smooth'
+                    });
+                }
             }
-        }
+        });
     });
-});
+}
 
 /**
  * 視窗捲動事件處理
