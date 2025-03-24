@@ -292,49 +292,8 @@ img {
 }
 
 /* 下拉選單樣式 */
-.main-nav .dropdown {
+.dropdown {
     position: relative;
-}
-
-/* 下拉選單觸發器樣式 */
-.main-nav .dropdown-toggle {
-    cursor: pointer; /* 改為指針游標，表示可點擊 */
-    outline: none; /* 取消點擊後的輪廓線 */
-}
-
-/* 下拉選單箭頭圖標樣式 */
-.dropdown-arrow {
-    width: 12px;
-    height: auto;
-    margin-left: 5px;
-    vertical-align: middle;
-    position: relative;
-    top: -1px; /* 微調箭頭位置，使其與文字更加對齊 */
-    transition: opacity 0.3s ease; /* 添加過渡效果 */
-}
-
-/* 滑鼠懸停時隱藏白色箭頭 */
-.main-nav .nav-list .dropdown > a:hover .dropdown-arrow {
-    opacity: 0;
-}
-
-/* 滑鼠懸停時顯示紅色向上箭頭 */
-.main-nav .nav-list .dropdown > a {
-    position: relative; /* 為偽元素定位做準備 */
-}
-
-.main-nav .nav-list .dropdown > a:hover::after {
-    content: '';
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background-image: url('../images/arrow-icon-red-menu.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    right: 16px; /* 調整紅色箭頭的水平位置 */
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 .dropdown-menu {
@@ -370,10 +329,88 @@ img {
     color: var(--color-light);
 }
 
-/* 取消所有導航連結的點擊輪廓 */
-.main-nav .nav-list a:focus {
-    outline: none;
-    box-shadow: none;
+/* 下拉選單箭頭 */
+.dropdown-arrow {
+    width: 12px;
+    height: 12px;
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+/* 移動設備下拉選單樣式 */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.05);
+        box-shadow: none;
+        padding: 0;
+        display: none;
+        opacity: 0;
+        visibility: hidden;
+        transform: none;
+        transition: none;
+        max-height: 0;
+        overflow: hidden;
+    }
+    
+    .dropdown.active .dropdown-menu {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none;
+        max-height: 500px; /* 足夠顯示所有項目 */
+        transition: max-height 0.3s ease;
+        padding: var(--spacing-sm) 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin: 0.5rem 0;
+    }
+    
+    /* 確保下拉選單中的項目在移動設備上正確顯示 */
+    .dropdown-menu li {
+        padding: 0 !important;
+        margin: 0;
+        display: block !important;
+    }
+    
+    .dropdown-menu a {
+        padding: 0.75rem 1.5rem !important;
+        color: rgba(255, 255, 255, 0.8) !important;
+        font-size: 0.9rem;
+        display: block !important;
+        border-left: 3px solid transparent;
+    }
+    
+    .dropdown-menu a:hover,
+    .dropdown-menu a:active {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-left: 3px solid var(--color-primary);
+    }
+    
+    /* 修改下拉選單箭頭在移動設備上的顯示 */
+    .main-nav .nav-list .dropdown > a {
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .dropdown.active .dropdown-arrow {
+        transform: rotate(180deg);
+    }
+    
+    /* 產業應用和客製化解決方案選項在選中時的樣式 */
+    .dropdown.active > a {
+        color: var(--color-primary) !important;
+        font-weight: 500;
+    }
+    
+    /* 禁用桌面版的下拉選單懸停效果 */
+    .dropdown:hover .dropdown-menu {
+        opacity: 0;
+        visibility: hidden;
+        display: none;
+    }
 }
 
 /* 移動設備選單按鈕 - 已修改為白色 */
@@ -1081,6 +1118,7 @@ img {
         background-color: #fff;
         position: relative;
         margin: 10px;
+        transition: all 0.3s ease;
     }
     
     .hamburger:before,
@@ -1092,6 +1130,7 @@ img {
         background-color: #fff;
         position: absolute;
         left: 0;
+        transition: all 0.3s ease;
     }
     
     .hamburger:before {
@@ -1102,13 +1141,28 @@ img {
         bottom: -8px;
     }
     
+    /* 漢堡圖標變成叉叉圖標的樣式 */
+    .main-nav.active .hamburger {
+        background-color: transparent;
+    }
+    
+    .main-nav.active .hamburger:before {
+        top: 0;
+        transform: rotate(45deg);
+    }
+    
+    .main-nav.active .hamburger:after {
+        bottom: 0;
+        transform: rotate(-45deg);
+    }
+    
     .main-nav {
         position: relative;
     }
     
     .nav-list {
-        position: absolute;
-        top: 100%;
+        position: fixed;
+        top: 60px; /* 調整為與頂部導航欄高度一致 */
         left: 0;
         right: 0;
         background-color: var(--color-dark);
@@ -1120,6 +1174,8 @@ img {
         transition: all 0.3s ease;
         z-index: 999;
         width: 100%;
+        max-height: calc(100vh - 60px); /* 最大高度為視窗高度減去頂部導航欄高度 */
+        overflow-y: auto; /* 內容過多時可滾動 */
     }
     
     .main-nav.active .nav-list {
@@ -1130,6 +1186,7 @@ img {
     
     .main-nav .nav-list {
         flex-direction: column;
+        align-items: flex-start;
     }
     
     .main-nav .nav-list li {
@@ -1138,12 +1195,18 @@ img {
         padding: 0.5rem 1rem;
     }
     
+    .main-nav .nav-list a {
+        width: 100%;
+        display: block;
+        padding: 0.75rem 1rem;
+    }
+    
     .dropdown-menu {
         position: static;
         width: 100%;
         background-color: rgba(255, 255, 255, 0.05);
         box-shadow: none;
-        padding-left: var(--spacing-md);
+        padding: 0;
         display: none;
         opacity: 1;
         visibility: visible;
@@ -1156,6 +1219,39 @@ img {
         opacity: 1;
         visibility: visible;
         transform: none;
+        max-height: 500px; /* 足夠顯示所有項目 */
+        transition: max-height 0.3s ease;
+        padding: var(--spacing-sm) 0;
+    }
+    
+    /* 確保下拉選單中的項目在移動設備上正確顯示 */
+    .dropdown-menu li {
+        padding: 0 !important;
+        margin: 0;
+    }
+    
+    .dropdown-menu a {
+        padding: 0.5rem 1rem !important;
+        color: rgba(255, 255, 255, 0.8) !important;
+        font-size: 0.9rem;
+        display: block;
+    }
+    
+    /* 修改下拉選單箭頭在移動設備上的顯示 */
+    .main-nav .nav-list .dropdown > a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .dropdown.active .dropdown-arrow {
+        transform: rotate(180deg);
+    }
+    
+    /* 禁用桌面版的下拉選單懸停效果 */
+    .dropdown:hover .dropdown-menu {
+        opacity: 0;
+        visibility: hidden;
     }
     
     .hero h1 {

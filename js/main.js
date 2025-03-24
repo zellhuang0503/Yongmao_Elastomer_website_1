@@ -63,6 +63,18 @@ function initMobileMenu() {
         }
     });
     
+    // 點擊導航項目時阻止事件冒泡
+    navList.addEventListener('click', function(e) {
+        // 確保點擊導航項目時不會觸發文檔點擊事件
+        e.stopPropagation();
+    });
+    
+    // 點擊漢堡圖標時阻止事件冒泡
+    mobileToggle.addEventListener('click', function(e) {
+        // 確保點擊漢堡圖標時不會觸發文檔點擊事件
+        e.stopPropagation();
+    });
+    
     // 點擊頁面其他地方關閉選單
     document.addEventListener('click', function(e) {
         if (window.innerWidth <= 768) {
