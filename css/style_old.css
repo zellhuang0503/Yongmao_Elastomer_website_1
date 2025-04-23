@@ -1,0 +1,1119 @@
+/* 通用類別 */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.section {
+    padding: var(--spacing-xl) 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.section-header p {
+    font-size: 1.25rem;
+    color: var(--color-dark-gray);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bg-light {
+    background-color: var(--color-gray);
+}
+
+/* 按鈕樣式 */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius-sm);
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #e02e03;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: var(--color-orange);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #e0900a;
+    color: white;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+.btn-outline:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+/* 卡片通用樣式 */
+.card {
+    background-color: white;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-link {
+    color: var(--color-primary);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+}
+
+.card-link:after {
+    content: '→';
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.card-link:hover:after {
+    transform: translateX(5px);
+}
+
+/* 產業應用領域背景 */
+.industries.bg-light {
+    background-image: url('../images/industries-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* 固定背景，產生視差效果 */
+}
+
+/* 產業應用領域文字顏色 */
+.industries.bg-light .section-header h2,
+.industries.bg-light .section-header p {
+    color: white; /* 將標題和副標題文字改為白色 */
+}
+
+.center-button {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+}
+
+/* 下拉選單樣式 */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 220px;
+    background-color: var(--color-dark);
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-sm) 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 100;
+    list-style: none; /* 移除列表項目前的圓點 */
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li {
+    margin: 0;
+    list-style-type: none; /* 確保列表項目沒有任何標記 */
+}
+
+.dropdown-menu a {
+    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--color-light);
+}
+
+/* 下拉選單箭頭 */
+.dropdown-arrow {
+    width: 12px;
+    height: 12px;
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+/* 移動設備下拉選單樣式 */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.05);
+        box-shadow: none;
+        padding: 0;
+        display: none;
+        opacity: 0;
+        visibility: hidden;
+        transform: none;
+        transition: none;
+        max-height: 0;
+        overflow: hidden;
+    }
+    
+    .dropdown.active .dropdown-menu {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none;
+        max-height: 500px; /* 足夠顯示所有項目 */
+        transition: max-height 0.3s ease;
+        padding: var(--spacing-sm) 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin: 0.5rem 0;
+    }
+    
+    /* 確保下拉選單中的項目在移動設備上正確顯示 */
+    .dropdown-menu li {
+        padding: 0 !important;
+        margin: 0;
+        display: block !important;
+    }
+    
+    .dropdown-menu a {
+        padding: 0.75rem 1.5rem !important;
+        color: rgba(255, 255, 255, 0.8) !important;
+        font-size: 0.9rem;
+        display: block !important;
+        border-left: 3px solid transparent;
+    }
+    
+    .dropdown-menu a:hover,
+    .dropdown-menu a:active {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-left: 3px solid var(--color-primary);
+    }
+    
+    /* 修改下拉選單箭頭在移動設備上的顯示 */
+    .main-nav .nav-list .dropdown > a {
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .dropdown.active .dropdown-arrow {
+        transform: rotate(180deg);
+    }
+    
+    /* 產業應用和客製化解決方案選項在選中時的樣式 */
+    .dropdown.active > a {
+        color: var(--color-primary) !important;
+        font-weight: 500;
+    }
+    
+    /* 禁用桌面版的下拉選單懸停效果 */
+    .dropdown:hover .dropdown-menu {
+        opacity: 0;
+        visibility: hidden;
+        display: none;
+    }
+}
+
+/* 移動設備選單按鈕 - 已修改為白色 */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: relative;
+    z-index: 100;
+    outline: none;
+    width: 40px;
+    height: 40px;
+}
+
+.mobile-menu-toggle:focus {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+.mobile-menu-toggle:active {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+.hamburger {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.hamburger:before,
+.hamburger:after {
+    content: '';
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    transition: transform 0.3s ease;
+}
+
+.hamburger:before {
+    top: -10px;
+}
+
+.hamburger:after {
+    bottom: -10px;
+}
+
+.main-nav.active .hamburger {
+    background-color: transparent;
+}
+
+.main-nav.active .hamburger:before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.main-nav.active .hamburger:after {
+    transform: rotate(-45deg);
+    bottom: 0;
+}
+
+/* 主橫幅區域 */
+.hero {
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../images/hero-bg-new.png');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-xl) 0;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+/* Hero 按鈕尺寸調整 */
+.hero-buttons .btn {
+    /* 縮小按鈕的文字大小和內邊距 */
+    padding: 0.6rem 1.2rem; /* 原先是 0.75rem 1.5rem，縮小 20% */
+    font-size: 0.9rem; /* 縮小 10% 的文字大小，確保可讀性 */
+    /* 不使用 transform: scale() 以避免影響按鈕之間的間距 */
+    display: inline-flex; /* 使用 flex 布局以便垂直居中 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    min-height: 2.5rem; /* 確保按鈕高度一致 */
+}
+
+/* 加深按鈕懸停時的顏色 */
+.hero-buttons .btn-primary:hover {
+    background-color: #c02500; /* 比原來的 #e02e03 更深的紅色 */
+}
+
+.hero-buttons .btn-secondary:hover {
+    background-color: #c07800; /* 比原來的 #e0900a 更深的橙色 */
+}
+
+/* 關於我們摘要 */
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+    flex-direction: row-reverse; /* 將圖片放在右側，文字放在左側 */
+}
+
+.about-text,
+.about-image {
+    flex: 1;
+}
+
+.about-text {
+    padding-right: var(--spacing-lg); /* 為文字區塊添加右側間距 */
+}
+
+.about-image img {
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    width: 100%; /* 確保圖片填滿容器 */
+    height: auto; /* 保持圖片比例 */
+}
+
+/* 產業應用網格 */
+.industries-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+}
+
+.industry-card {
+    background-color: white;
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.industry-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.industry-icon {
+    margin-bottom: var(--spacing-md);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.industry-icon img {
+    max-width: 80px;
+    max-height: 80px;
+    object-fit: contain;
+}
+
+/* 解決方案輪播 */
+.solutions-slider {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+}
+
+.solution-slide {
+    display: none;
+    padding: var(--spacing-xl);
+    background-color: white;
+}
+
+.solution-slide.active {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-xl);
+}
+
+@media (max-width: 768px) {
+    .solution-slide.active {
+        flex-direction: column;
+    }
+}
+
+.solution-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: var(--spacing-md);
+    flex: 1;
+}
+
+.solution-content h3 {
+    margin-bottom: var(--spacing-sm);
+}
+
+.solution-content p {
+    margin-bottom: var(--spacing-md);
+    max-width: 100%;
+    line-height: 1.6;
+}
+
+.solution-content .btn {
+    margin-top: var(--spacing-sm);
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+}
+
+.btn-arrow {
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.solution-image {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    flex: 1;
+}
+
+.solution-image::before {
+    content: "";
+    display: block;
+    padding-top: 56.25%; /* 16:9 比例 (9/16 = 0.5625 = 56.25%) */
+}
+
+.solution-image img {
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow-sm);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.slider-indicators {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-md); /* 添加底部間距 */
+    padding-bottom: var(--spacing-sm); /* 添加內部底部間距 */
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--color-gray);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.indicator.active {
+    background-color: var(--color-primary);
+}
+
+/* 最新消息網格 */
+.news-summary {
+    position: relative;
+    color: white; /* 將文字顏色設為白色，以便在深色背景上清晰顯示 */
+}
+
+.news-bg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.news-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../images/Black_wrinkled_silicone_2.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* 固定背景，產生視差效果 */
+}
+
+/* 確保最新消息區塊中的標題和副標題為白色 */
+.news-summary .section-header h2,
+.news-summary .section-header p {
+    color: white;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+}
+
+.news-card {
+    background-color: white;
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: var(--color-dark); /* 確保卡片內文字為深色 */
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.news-image {
+    height: 200px;
+    overflow: hidden;
+    position: relative; /* 為日期定位提供參考 */
+}
+
+.news-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.news-card:hover .news-image img {
+    transform: scale(1.05);
+}
+
+.news-date {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-primary);
+    color: white;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top-right-radius: var(--border-radius-sm);
+}
+
+.news-date .day {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.news-date .month {
+    font-size: 0.875rem;
+}
+
+.news-content {
+    padding: var(--spacing-md);
+}
+
+.news-content h3 {
+    color: var(--color-dark);
+    margin-top: var(--spacing-sm);
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.news-content p {
+    color: var(--color-dark-gray);
+    margin-bottom: var(--spacing-md);
+}
+
+.news-content .card-link {
+    color: var(--color-primary);
+    font-weight: 500;
+    position: relative;
+    display: inline-block;
+}
+
+.news-content .card-link::after {
+    content: "→";
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+.news-content .card-link:hover::after {
+    transform: translateX(3px);
+}
+
+/* 聯絡我們區塊 */
+.contact-content {
+    display: flex;
+    gap: var(--spacing-xl);
+}
+
+.contact-info,
+.contact-form {
+    flex: 1;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-md);
+}
+
+.contact-icon {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-right: var(--spacing-md);
+}
+
+/* 聯絡表單卡片樣式 - 全新版本 v2 */
+.contact-card-v2 {
+    background-color: white;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+}
+
+/* 修正 CSS lint 錯誤：移除空規則集 */
+.contact-card {
+    /* 已不再使用 */
+    display: none;
+}
+
+.form-row {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* 表單元素樣式改進 */
+.form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 500;
+    color: var(--color-dark);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius-sm);
+    font-family: var(--font-primary);
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.form-group button {
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 2.5rem;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.form-group button:hover {
+    background-color: #e62e04;
+}
+
+/* 響應式表單 */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .contact-card-v2 {
+        padding: var(--spacing-lg);
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+/* 刪除所有可能與卡片頭部相關的樣式 */
+.card-header, 
+.card-body {
+    display: none !important;
+}
+
+/* 頁腳區域 */
+.footer {
+    background-color: var(--color-dark);
+    color: white;
+    padding: var(--spacing-xl) 0;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--spacing-lg);
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+    padding: var(--spacing-md);
+}
+
+.footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-contact-icon {
+    margin-right: var(--spacing-sm);
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    min-width: 24px;
+    text-align: center;
+}
+
+.footer-contact-text {
+    flex: 1;
+}
+
+.footer-contact-text h5 {
+    margin: 0 0 var(--spacing-xs) 0;
+    font-size: 1rem;
+    color: white;
+}
+
+.footer-contact-text p {
+    margin: 0;
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.footer-title {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-primary);
+    display: inline-block;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    columns: 2;
+}
+
+.footer-links li {
+    margin-bottom: var(--spacing-xs);
+    break-inside: avoid;
+}
+
+.footer-links a {
+    color: #ccc;
+    font-size: 0.9rem;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--color-primary);
+    padding-left: var(--spacing-xs);
+}
+
+.footer-bottom {
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    font-size: 0.875rem;
+    color: #ccc;
+}
+
+.footer-logo {
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-logo img {
+    height: 50px;
+    margin-bottom: var(--spacing-sm);
+}
+
+.footer-description {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin-bottom: var(--spacing-md);
+}
+
+/* 響應式頁尾 */
+@media (max-width: 992px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .footer-right {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-right {
+        grid-column: span 1;
+    }
+    
+    .footer-links {
+        columns: 1;
+    }
+}
+
+/* 響應式設計 */
+@media (max-width: 992px) {
+    .industries-grid,
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .about-content,
+    .solution-content,
+    .contact-content {
+        flex-direction: column;
+    }
+    
+    .about-image,
+    .solution-image {
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+    
+    .header .container {
+        position: relative;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1000;
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    .hamburger {
+        display: block;
+        width: 24px;
+        height: 3px;
+        background-color: #fff;
+        position: relative;
+        margin: 10px;
+        transition: all 0.3s ease;
+    }
+    
+    .hamburger:before,
+    .hamburger:after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        position: absolute;
+        left: 0;
+        transition: all 0.3s ease;
+    }
+    
+    .hamburger:before {
+        top: -8px;
+    }
+    
+    .hamburger:after {
+        bottom: -8px;
+    }
+    
+    /* 漢堡圖標變成叉叉圖標的樣式 */
+    .main-nav.active .hamburger {
+        background-color: transparent;
+    }
+    
+    .main-nav.active .hamburger:before {
+        top: 0;
+        transform: rotate(45deg);
+    }
+    
+    .main-nav.active .hamburger:after {
+        bottom: 0;
+        transform: rotate(-45deg);
+    }
+    
+    .main-nav {
+        position: relative;
+    }
+    
+    .nav-list {
+        position: fixed;
+        top: 60px; /* 調整為與頂部導航欄高度一致 */
+        left: 0;
+        right: 0;
+        background-color: var(--color-dark);
+        box-shadow: var(--shadow-md);
+        padding: var(--spacing-md) 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 999;
+        width: 100%;
+        max-height: calc(100vh - 60px); /* 最大高度為視窗高度減去頂部導航欄高度 */
+        overflow-y: auto; /* 內容過多時可滾動 */
+    }
+    
+    .main-nav.active .nav-list {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+    .main-nav .nav-list {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .main-nav .nav-list li {
+        margin: 0;
+        width: 100%;
+        padding: 0.5rem 1rem;
+    }
+    
+    .main-nav .nav-list a {
+        width: 100%;
+        display: block;
+        padding: 0.75rem 1rem;
+    }
+    
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.05);
+        box-shadow: none;
+        padding: 0;
+        display: none;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transition: none;
+    }
+    
+    .dropdown.active .dropdown-menu {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        max-height: 500px; /* 足夠顯示所有項目 */
+        transition: max-height 0.3s ease;
+        padding: var(--spacing-sm) 0;
+    }
+    
+    /* 確保下拉選單中的項目在移動設備上正確顯示 */
+    .dropdown-menu li {
+        padding: 0 !important;
+        margin: 0;
+    }
+    
+    .dropdown-menu a {
+        padding: 0.5rem 1rem !important;
+        color: rgba(255, 255, 255, 0.8) !important;
+        font-size: 0.9rem;
+        display: block;
+    }
+    
+    /* 修改下拉選單箭頭在移動設備上的顯示 */
+    .main-nav .nav-list .dropdown > a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .dropdown.active .dropdown-arrow {
+        transform: rotate(180deg);
+    }
+    
+    /* 禁用桌面版的下拉選單懸停效果 */
+    .dropdown:hover .dropdown-menu {
+        opacity: 0;
+        visibility: hidden;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.25rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .industries-grid,
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 滾動效果 */
+.header.scrolled {
+    box-shadow: var(--shadow-md);
+}
+
+/* 無障礙設計 */
+:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}

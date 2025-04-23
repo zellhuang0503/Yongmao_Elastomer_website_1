@@ -1,0 +1,816 @@
+/* Page layout styles (header, footer, nav, container, section) */
+
+/* === Layout Styles === */
+
+/* --- General Layout --- */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+}
+
+.section {
+    padding: var(--spacing-xl) 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.section-header h2 {
+    font-size: 2.25rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-dark);
+}
+
+.section-header p {
+    font-size: 1.1rem;
+    color: var(--color-dark-gray);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- Header & Navigation --- */
+.header {
+    position: sticky;
+    top: 0;
+    background-color: var(--color-dark);
+    box-shadow: var(--shadow-sm);
+    z-index: 1000;
+}
+
+.header .container {
+    display: flex;
+    align-items: center; /* 確保子元素垂直居中 */
+    justify-content: space-between;
+    padding-top: var(--spacing-md); /* 增加上下內邊距 */
+    padding-bottom: var(--spacing-md);
+    position: relative; /* For mobile menu toggle positioning */
+}
+
+.logo {
+    display: flex;
+    align-items: center; /* 確保LOGO垂直居中 */
+}
+
+.logo img {
+    height: 35px !important; /* 增加LOGO高度 */
+    width: auto; /* 保持圖片比例 */
+    max-height: 35px !important; /* 確保最大高度也受限制 */
+}
+
+/* --- Main Navigation (Desktop) --- */
+.main-nav .nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav .nav-list li {
+    position: relative;
+    margin: 0 var(--spacing-sm);
+}
+
+.main-nav .nav-list a {
+    display: block;
+    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--color-light);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.main-nav .nav-list a:hover,
+.main-nav .nav-list a.active {
+    color: var(--color-primary);
+}
+
+.main-nav .nav-list a.active:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: var(--spacing-md);
+    right: var(--spacing-md);
+    height: 2px;
+    background-color: var(--color-primary);
+}
+
+/* Dropdown Menu (Desktop) */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 220px;
+    background-color: var(--color-dark);
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-sm) 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 100;
+    list-style: none;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li {
+    margin: 0;
+    list-style-type: none;
+}
+
+.dropdown-menu a {
+    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--color-light);
+}
+
+/* Dropdown Arrow */
+.dropdown-arrow {
+    width: 12px;
+    height: 12px;
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+/* --- Mobile Menu Toggle & Hamburger --- */
+.mobile-menu-toggle {
+    display: none; /* Hidden by default */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: absolute; /* Position relative to header container */
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1001; /* Ensure it's above nav */
+    outline: none;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.2); /* Slight background for visibility */
+    border-radius: 4px;
+}
+
+.mobile-menu-toggle:focus,
+.mobile-menu-toggle:active {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+.hamburger {
+    display: block;
+    width: 24px; /* Adjusted from 30px */
+    height: 3px;
+    background-color: #fff;
+    position: relative;
+    margin: 4px auto; /* Centered within the toggle button */
+    transition: all 0.3s ease;
+}
+
+.hamburger:before,
+.hamburger:after {
+    content: '';
+    width: 100%; /* Adjusted from 30px */
+    height: 100%; /* Use height of main bar */
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    transition: all 0.3s ease;
+}
+
+.hamburger:before {
+    top: -8px; /* Adjusted from -10px */
+}
+
+.hamburger:after {
+    bottom: -8px; /* Adjusted from -10px */
+}
+
+/* Active state for Hamburger (X icon) */
+.main-nav.active .hamburger {
+    background-color: transparent;
+}
+
+.main-nav.active .hamburger:before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.main-nav.active .hamburger:after {
+    transform: rotate(-45deg);
+    bottom: 0;
+}
+
+/* --- Hero Section Layout --- */
+.hero {
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../images/hero-bg-new.png');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-xl) 0;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+/* --- Footer --- */
+.footer {
+    background-color: var(--color-dark);
+    color: white;
+    padding: var(--spacing-xl) 0;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--spacing-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+    padding: var(--spacing-md);
+}
+
+.footer-logo {
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-logo img {
+    height: 50px;
+    margin-bottom: var(--spacing-sm);
+}
+
+.footer-description {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-contact-icon {
+    margin-right: var(--spacing-sm);
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    min-width: 24px;
+    text-align: center;
+}
+
+.footer-contact-text {
+    flex: 1;
+}
+
+.footer-contact-text h5 {
+    margin: 0 0 var(--spacing-xs) 0;
+    font-size: 1rem;
+    color: white;
+}
+
+.footer-contact-text p {
+    margin: 0;
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.footer-title {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-primary);
+    display: inline-block;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    columns: 2;
+}
+
+.footer-links li {
+    margin-bottom: var(--spacing-xs);
+    break-inside: avoid;
+}
+
+.footer-links a {
+    color: #ccc;
+    font-size: 0.9rem;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--color-primary);
+    padding-left: var(--spacing-xs);
+}
+
+.footer-bottom {
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    font-size: 0.875rem;
+    color: #ccc;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+}
+
+/* --- Responsive Layout --- */
+@media (max-width: 992px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .footer-right {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 768px) {
+    /* --- Mobile Navigation --- */
+    .mobile-menu-toggle {
+        display: block; /* Show toggle button */
+    }
+
+    .main-nav {
+        position: absolute;
+        top: 100%; /* Position below header */
+        left: 0;
+        width: 100%;
+        background-color: var(--color-dark);
+        overflow: hidden;
+        max-height: 0; /* Hidden by default */
+        transition: max-height 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        z-index: 999; /* Below toggle button */
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .main-nav.active {
+        max-height: 80vh; /* Adjust as needed, can be large */
+        overflow-y: auto; /* Allow scrolling if needed */
+    }
+
+    .main-nav .nav-list {
+        flex-direction: column;
+        padding: var(--spacing-md) 0;
+    }
+
+    .main-nav .nav-list li {
+        margin: 0;
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .main-nav .nav-list li:last-child {
+        border-bottom: none;
+    }
+
+    .main-nav .nav-list a {
+        padding: var(--spacing-md) var(--spacing-lg);
+        display: block;
+        width: 100%;
+        color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .main-nav .nav-list a.active,
+    .main-nav .nav-list a:hover {
+        color: var(--color-primary);
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .main-nav .nav-list a.active:after {
+        display: none; /* Remove bottom line on mobile */
+    }
+
+    /* Mobile Dropdown */
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.05);
+        box-shadow: none;
+        padding: 0;
+        display: none; /* Controlled by JS */
+        opacity: 1; /* Already visible when display:block */
+        visibility: visible;
+        transform: none;
+        transition: none;
+        max-height: 0;
+        overflow: hidden;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin: 0.5rem 0;
+    }
+    
+    .dropdown.active .dropdown-menu {
+        display: block !important; /* Force display */
+        max-height: 500px; /* Allow expansion */
+        transition: max-height 0.3s ease;
+        padding: var(--spacing-sm) 0;
+    }
+    
+    .dropdown-menu li {
+        padding: 0 !important;
+        margin: 0;
+        display: block !important;
+        border: none; /* Remove borders within dropdown */
+    }
+    
+    .dropdown-menu a {
+        padding: 0.75rem 2rem !important; /* Indent further */
+        color: rgba(255, 255, 255, 0.7) !important;
+        font-size: 0.9rem;
+        display: block !important;
+        border-left: 3px solid transparent;
+    }
+    
+    .dropdown-menu a:hover,
+    .dropdown-menu a:active {
+        background-color: rgba(255, 255, 255, 0.03);
+        border-left: 3px solid var(--color-primary);
+        color: white !important;
+    }
+    
+    /* Adjust main dropdown link for arrow */
+    .main-nav .nav-list .dropdown > a {
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .dropdown.active .dropdown-arrow {
+        transform: rotate(180deg);
+    }
+        
+    /* Disable desktop hover effects */
+    .dropdown:hover .dropdown-menu {
+        opacity: 0;
+        visibility: hidden;
+        display: none;
+    }
+    
+    /* Footer */
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-right {
+        grid-column: span 1;
+    }
+    
+    .footer-links {
+        columns: 1;
+    }
+}
+
+/* --- Header Scroll Effect --- */
+.header.scrolled {
+    box-shadow: var(--shadow-md);
+    background-color: rgba(33, 37, 41, 0.95); /* Slightly transparent when scrolled */
+    backdrop-filter: blur(5px);
+}
+
+/* ==========================================
+   佈局樣式 (從 style.css 遷移)
+   ========================================== */
+
+/* 通用類別 */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.section {
+    padding: var(--spacing-xl) 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.section-header p {
+    font-size: 1.25rem;
+    color: var(--color-dark-gray);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bg-light {
+    background-color: var(--color-gray);
+}
+
+/* 主橫幅區域佈局 */
+.hero {
+    /* 背景圖片和顏色由 components.css 控制 */
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-xl) 0;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+/* 關於我們摘要佈局 */
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+    flex-direction: row-reverse; /* 將圖片放在右側，文字放在左側 */
+}
+
+.about-text,
+.about-image {
+    flex: 1;
+}
+
+.about-text {
+    padding-right: var(--spacing-lg); /* 為文字區塊添加右側間距 */
+}
+
+/* 產業應用網格 */
+.industries-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+}
+
+/* 解決方案輪播佈局 */
+@media (max-width: 768px) {
+    .solution-slide.active {
+        flex-direction: column;
+    }
+}
+
+/* 最新消息網格 */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+}
+
+/* 聯絡我們區塊佈局 */
+.contact-content {
+    display: flex;
+    gap: var(--spacing-xl);
+}
+
+.contact-info,
+.contact-form {
+    flex: 1;
+}
+
+.form-row {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* 頁腳區域佈局 */
+.footer {
+    background-color: var(--color-dark);
+    color: white;
+    padding: var(--spacing-xl) 0;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--spacing-lg);
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+    padding: var(--spacing-md);
+}
+
+.footer-links {
+    /* list-style 由 components.css 控制 */
+    columns: 2;
+}
+
+.footer-links li {
+    /* margin 由 components.css 控制 */
+    break-inside: avoid;
+}
+
+/* ==========================================
+   響應式佈局調整 (從 style.css 遷移)
+   ========================================== */
+
+/* 響應式頁尾 */
+@media (max-width: 992px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .footer-right {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-right {
+        grid-column: span 1;
+    }
+    
+    .footer-links {
+        columns: 1;
+    }
+    
+    /* 響應式表單行 */
+    .form-row {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+}
+
+/* 通用響應式佈局 */
+@media (max-width: 992px) {
+    .industries-grid,
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .about-content,
+    /* .solution-content 的 flex 由 components.css .solution-slide.active 控制 */
+    .contact-content {
+        flex-direction: column;
+    }
+    
+    .about-image,
+    .solution-image { /* 解決方案圖片響應式排序 */
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    /* 移動版 Header/Nav 佈局 */
+    .header .container {
+        position: relative;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1000;
+        /* 背景和圓角在 components.css */
+    }
+    
+    .main-nav {
+        position: relative;
+    }
+    
+    .nav-list {
+        position: fixed;
+        top: 60px; /* 調整為與頂部導航欄高度一致 */
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;
+        background-color: var(--color-dark);
+        padding: var(--spacing-md) 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .main-nav.active .nav-list {
+        transform: translateX(0);
+    }
+
+    .nav-list li {
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        width: 100%;
+        margin: 0;
+    }
+
+    .nav-list li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-list a {
+        padding: 1rem var(--spacing-lg);
+        display: block;
+        width: 100%;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1rem;
+    }
+
+    .nav-list a:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        color: white;
+    }
+    
+    /* 網格響應式 */
+    .industries-grid,
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Hero 區塊調整 */
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-buttons .btn {
+        width: 80%;
+        max-width: 300px;
+    }
+
+    /* 頁腳 */
+    .footer-left, .footer-center, .footer-right {
+        text-align: center;
+    }
+
+    .footer-contact-item {
+        justify-content: center;
+    }
+
+    .footer-links {
+        text-align: center;
+    }
+}
+
+/* 滾動時 Header 佈局 */
+.header.scrolled {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(34, 34, 34, 0.95); /* 帶透明度的深色背景 */
+    z-index: 1000;
+    /* box-shadow 由 components.css 控制 */
+    transition: background-color 0.3s ease;
+}
