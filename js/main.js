@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 初始化平滑捲動
     initSmoothScroll();
+
+    // 初始化時間軸進入動畫 (如果頁面上有時間軸)
+    initTimelineAnimation();
 });
 
 /**
@@ -225,13 +228,47 @@ function initSmoothScroll() {
  * 視窗捲動事件處理
  */
 window.addEventListener('scroll', function() {
-    // 獲取導航元素
+    // 可以在這裡添加捲動相關的其他效果，例如導航欄樣式變化
     const header = document.querySelector('.header');
-    
-    // 如果捲動超過100像素，為導航添加陰影類別
     if (window.scrollY > 100) {
         header.classList.add('scrolled');
     } else {
         header.classList.remove('scrolled');
     }
 });
+
+/**
+ * 初始化時間軸進入動畫 (Intersection Observer)
+ */
+function initTimelineAnimation() {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+
+    // 如果頁面上沒有時間軸項目，則退出
+    if (timelineItems.length === 0) {
+        return;
+    }
+
+    const observerOptions = {
+        root: null, // 相對於 viewport
+        rootMargin: '0px',
+        threshold: 0.1 // 元素進入 viewport 10% 時觸發
+    };
+
+    const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            // 當元素進入可視區域
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                // 添加 is-visible 後就不再觀察此元素，避免重複觸發
+                observer.unobserve(entry.target);
+            }
+        });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // 開始觀察每個時間軸項目
+    timelineItems.forEach(item => {
+        observer.observe(item);
+    });
+}

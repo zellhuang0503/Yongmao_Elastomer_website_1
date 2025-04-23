@@ -776,110 +776,249 @@
 /* 公司歷史時間軸樣式 (About Page History Timeline) */
 .history-timeline {
     position: relative;
-    padding: var(--spacing-lg) 0;
-    margin-left: 20px; /* 為左側線條留出空間 */
+    max-width: 900px; /* 限制最大寬度 */
+    margin: 50px auto; /* 上下間距並置中 */
+    padding: 40px 0; /* 上下內距 */
 }
 
-/* 時間軸垂直線 */
+/* 中心線保持不變 */
 .history-timeline::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background-color: var(--color-gray);
-    border-radius: 2px;
+    left: 50%;
+    top: calc(var(--spacing-md) + 25px); /* 16px + 50px/2 - 根據圓點調整 */
+    bottom: calc(var(--spacing-md) + 25px); /* 同上 */
+    width: 2px;
+    background-color: var(--color-dark-gray);
+    transform: translateX(-50%);
+    z-index: 1;
 }
 
 .timeline-item {
     position: relative;
-    margin-bottom: var(--spacing-xl);
-    padding-left: 40px; /* 為圓點和年份留出空間 */
+    z-index: 2; /* 確保項目在時間線之上 */
+    width: 50%; /* 佔據一半寬度 */
+    padding-top: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-/* 時間軸圓點標記 */
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -8px; /* 調整位置以對齊垂直線 */
-    top: 5px; /* 調整垂直位置 */
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: var(--color-primary);
-    border: 4px solid var(--color-light);
-    box-sizing: border-box;
-    z-index: 1;
+.timeline-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 左側項目 */
+.timeline-item:nth-child(odd) {
+    left: 0;
+    padding-right: calc(25px + var(--spacing-md)); /* 圓點半徑 + 間距 */
+    text-align: right;
+}
+
+/* 右側項目 */
+.timeline-item:nth-child(even) {
+    left: 50%;
+    padding-left: calc(25px + var(--spacing-md)); /* 圓點半徑 + 間距 */
+    text-align: left;
 }
 
 .timeline-year {
     position: absolute;
-    left: -70px; /* 將年份放在左側 */
-    top: 3px; /* 調整垂直位置對齊圓點 */
-    background-color: var(--color-dark);
-    color: white;
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--border-radius-sm);
-    font-weight: 500;
-    font-size: 0.9rem;
-    width: 60px; /* 固定寬度 */
-    text-align: center;
+    top: var(--spacing-md); /* 與 timeline-item padding 同步 */
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    border-radius: 50%;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    font-size: 0.9em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* 移除邊框和居中定位 */
+    /* border: 2px solid var(--color-light); */
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
 }
 
+/* 左側項目 (odd) 的年份節點放右邊 */
+.timeline-item:nth-child(odd) .timeline-year {
+    right: -25px; /* 圓點半徑 */
+    left: auto; /* 清除 left */
+    transform: translateX(0); /* 清除 transform */
+}
+
+/* 右側項目 (even) 的年份節點放左邊 */
+.timeline-item:nth-child(even) .timeline-year {
+    left: -25px; /* 圓點半徑 */
+    right: auto; /* 清除 right */
+    transform: translateX(0); /* 清除 transform */
+}
+
+/* 內容卡片 */
 .timeline-content {
-    background-color: white;
+    position: relative;
+    /* 預設透明 */
+    background-color: transparent;
     padding: var(--spacing-md);
     border-radius: var(--border-radius-md);
-    box-shadow: var(--shadow-sm);
-    position: relative;
+    /* 預設無邊框和陰影 */
+    border: 1px solid transparent; /* 用透明邊框佔位，避免 hover 時跳動 */
+    box-shadow: none;
+    width: auto; /* 恢復自動寬度 */
+    margin-left: 0; /* 清除計算的 margin */
+    margin-right: 0; /* 清除計算的 margin */
+    /* 添加過渡效果 */
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    /* text-align 會由父元素 .timeline-item 控制 */
 }
 
-.timeline-content h3 {
-    margin-top: 0;
-    margin-bottom: var(--spacing-sm);
-    color: var(--color-primary);
+/* 內容卡片箭頭 */
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 20px; /* 調整箭頭垂直位置 */
+    width: 0;
+    height: 0;
+    border-style: solid;
+    z-index: 1;
+    /* 添加過渡效果 */
+    transition: border-color 0.3s ease;
 }
 
-.timeline-content p {
-    margin-bottom: 0;
-    color: var(--color-dark-gray);
-    line-height: 1.6;
+/* 左側項目 (odd) 的箭頭 (指向右) - 預設透明 */
+.timeline-item:nth-child(odd) .timeline-content::before {
+    left: auto; /* 清除 left */
+    right: -10px; /* 指向右邊的年份節點 */
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent transparent; /* 預設透明 */
 }
 
-/* 響應式調整 */
-@media (max-width: 768px) {
-    .history-timeline {
-        margin-left: 10px; /* 縮小左邊距 */
+/* 右側項目 (even) 的箭頭 (指向左) - 預設透明 */
+.timeline-item:nth-child(even) .timeline-content::before {
+    left: -10px; /* 指向左邊的年份節點 */
+    right: auto; /* 清除 right */
+    border-width: 10px 10px 10px 0;
+    border-color: transparent transparent transparent transparent; /* 預設透明 */
+}
+
+/* 箭頭邊框 */
+.timeline-content::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    z-index: 0;
+    /* 添加過渡效果 */
+    transition: border-color 0.3s ease;
+}
+
+/* 左側項目 (odd) 的箭頭邊框 - 預設透明 */
+.timeline-item:nth-child(odd) .timeline-content::after {
+    left: auto;
+    right: -11px; /* 邊框位置 */
+    border-width: 11px 0 11px 11px;
+    border-color: transparent transparent transparent transparent; /* 預設透明 */
+}
+
+/* 右側項目 (even) 的箭頭邊框 - 預設透明 */
+.timeline-item:nth-child(even) .timeline-content::after {
+    left: -11px; /* 邊框位置 */
+    right: auto;
+    border-width: 11px 11px 11px 0;
+    border-color: transparent transparent transparent transparent; /* 預設透明 */
+}
+
+/* Hover 效果 */
+.timeline-content:hover {
+    background-color: var(--color-light); /* 恢復背景 */
+    border-color: var(--border-color); /* 恢復邊框 */
+    box-shadow: var(--shadow-medium); /* 顯示陰影 */
+    transform: translateY(-5px);
+}
+
+/* Hover 時箭頭恢復顏色 */
+.timeline-item:nth-child(odd) .timeline-content:hover::before {
+    border-color: transparent transparent transparent var(--color-light);
+}
+.timeline-item:nth-child(even) .timeline-content:hover::before {
+    border-color: transparent var(--color-light) transparent transparent;
+}
+
+/* Hover 時箭頭邊框恢復顏色 */
+.timeline-item:nth-child(odd) .timeline-content:hover::after {
+    border-color: transparent transparent transparent var(--border-color);
+}
+.timeline-item:nth-child(even) .timeline-content:hover::after {
+    border-color: transparent var(--border-color) transparent transparent;
+}
+
+/* 響應式設計 */
+@media screen and (max-width: 768px) {
+    /* 在小螢幕上，所有項目都靠左，移除交錯效果 */
+    .history-timeline::before {
+        left: 30px; /* 線條移到左邊 */
+        top: var(--spacing-md); /* 線條從頭開始 */
+        bottom: var(--spacing-md);
     }
 
-    .timeline-item {
-        padding-left: 30px; /* 縮小左內邊距 */
+    .timeline-item,
+    .timeline-item:nth-child(even) {
+        left: 0;
+        width: 100%;
+        text-align: left;
+        padding-left: calc(30px + var(--spacing-md) + 25px); /* 線條位置 + 間距 + 圓點半徑 */
+        padding-right: var(--spacing-md);
     }
 
-    .timeline-item::before {
-        left: -6px; /* 調整圓點位置 */
-        width: 16px;
-        height: 16px;
-        border-width: 3px;
-        top: 8px;
-    }
-
-    .timeline-year {
-        position: static; /* 年份改為靜態定位 */
-        margin-bottom: var(--spacing-sm);
-        display: inline-block; /* 改為行內塊 */
-        width: auto; /* 自動寬度 */
-        left: auto;
-        top: auto;
-        background-color: transparent; /* 移除背景 */
-        color: var(--color-dark);
-        font-weight: 700;
-        padding: 0;
-        font-size: 1.1rem;
+    .timeline-year,
+    .timeline-item:nth-child(even) .timeline-year,
+    .timeline-item:nth-child(odd) .timeline-year {
+        left: 5px; /* 圓點放在線條左邊一點 */
+        right: auto;
+        transform: translateX(0);
+        top: var(--spacing-md);
     }
 
     .timeline-content {
-        margin-left: 0; /* 移除左邊距 */
+        width: 100%; /* 內容佔滿可用寬度 */
+    }
+
+    /* 調整小螢幕箭頭 */
+    .timeline-content::before,
+    .timeline-item:nth-child(even) .timeline-content::before,
+    .timeline-item:nth-child(odd) .timeline-content::before {
+        left: -10px; /* 所有箭頭都指向左 */
+        right: auto;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent transparent transparent transparent; /* 預設透明 */
+    }
+
+    .timeline-content::after,
+    .timeline-item:nth-child(even) .timeline-content::after,
+    .timeline-item:nth-child(odd) .timeline-content::after {
+        left: -11px;
+        right: auto;
+        border-width: 11px 11px 11px 0;
+        border-color: transparent transparent transparent transparent; /* 預設透明 */
+    }
+
+    /* 小螢幕 Hover 時箭頭恢復顏色 */
+    .timeline-content:hover::before,
+    .timeline-item:nth-child(even) .timeline-content:hover::before,
+    .timeline-item:nth-child(odd) .timeline-content:hover::before {
+        border-color: transparent var(--color-light) transparent transparent;
+    }
+
+    .timeline-content:hover::after,
+    .timeline-item:nth-child(even) .timeline-content:hover::after,
+    .timeline-item:nth-child(odd) .timeline-content:hover::after {
+        border-color: transparent var(--border-color) transparent transparent;
     }
 }
